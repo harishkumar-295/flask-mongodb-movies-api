@@ -15,7 +15,7 @@ def sign_up():
     return jsonify({"id":str(id)})
 
 @auth.post('/login')
-def login():
+def user_login():
     body = request.get_json()
     user = User.objects.get(email=body.get('email'))
     authorized = user.check_password(password=body.get('password'))
@@ -24,5 +24,5 @@ def login():
         return jsonify({"success": False,"msg":"Invalid email or password"}),401
     
     expires = datetime.timedelta(days=1)
-    access_token = create_access_token(identity=str(user.id), expires=expires)
+    access_token = create_access_token(identity=str(user.id), expires_delta=expires)
     return jsonify({"token":access_token})

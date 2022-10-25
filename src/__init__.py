@@ -17,7 +17,7 @@ def create_app():
     initialize_db(app)
     
     from .routes.movies import movie
-    from .routes.auth import auth
+    from .routes.authourization import auth
     app.register_blueprint(movie)
     app.register_blueprint(auth)
     

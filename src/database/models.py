@@ -14,7 +14,7 @@ class User(db.Document):
     movies = db.ListField(db.ReferenceField('Movie', reverse_delete_rule=db.PULL))
     
     def hash_password(self):
-        self.pasword = generate_password_hash(self.password).decode('utf8')
+        self.password = generate_password_hash(self.password).decode('utf8')
     
     def check_password(self,password):
         return check_password_hash(self.password,password)
