@@ -14,7 +14,7 @@ def movies():
         return Response(movies, mimetype="application/json", status=200)
     
 
-@movies.post('/movies')
+@movie.post('/movies')
 @jwt_required
 def create_movie():
     body = request.get_json()
